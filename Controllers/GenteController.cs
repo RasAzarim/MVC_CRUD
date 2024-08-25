@@ -101,6 +101,19 @@ namespace MVC_CRUD.Controllers
             }
 
         }
+        [HttpGet]
+        public ActionResult Elimnar(int Id)
+        {
+            using (CRUDEntities4 db = new CRUDEntities4())
+            {
+                
+                var Gente = db.Gente.Find(Id);
+                db.Gente.Remove(Gente);
+                db.SaveChanges();
+
+            }
+            return Redirect("/Gente");
+        }
 
     }
 }
