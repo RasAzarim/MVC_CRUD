@@ -226,6 +226,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Gente\Index.cshtml" />
     <Content Include="Views\Gente\Nuevo.cshtml" />
+    <Content Include="Views\Gente\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

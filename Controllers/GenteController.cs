@@ -58,5 +58,49 @@ namespace MVC_CRUD.Controllers
             }
 
         }
+        public ActionResult Editar(int Id)
+        {
+            GenteviewModel model = new GenteviewModel();
+            using (CRUDEntities4 db= new CRUDEntities4 ())
+            {
+                var Gente = db.Gente.Find(Id);
+                model.Nombre = Gente.Nombre;
+                model.Correo = Gente.Correo;
+                model.Fecha_Nacimiento = Gente.FechaNacimeiento;
+                model.Id = Gente.ID;
+
+            }
+                return View(model);
+        }
+        [HttpPost]
+        public ActionResult Editar(GenteviewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    using (CRUDEntities4 db = new CRUDEntities4())
+                    {
+                        var Gente = db.Gente.Find(model.Id);
+
+                        Gente.Correo = model.Correo;
+                        Gente.FechaNacimeiento = model.Fecha_Nacimiento;
+                        Gente.Nombre = model.Nombre;
+
+                        db.Entry(Gente).State= System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }
+
+                    return Redirect("/Gente");
+                }
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
     }
 }

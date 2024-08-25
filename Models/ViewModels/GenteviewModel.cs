@@ -8,7 +8,7 @@ namespace MVC_CRUD.Models.ViewModels
 {
     public class GenteviewModel
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         [Required]
         [StringLength(50)]
         [Display(Name = "Nombre")]
