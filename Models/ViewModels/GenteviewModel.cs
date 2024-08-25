@@ -20,6 +20,7 @@ namespace MVC_CRUD.Models.ViewModels
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Fecha de Nacimeinto")]
+
         public DateTime Fecha_Nacimiento { get; set; }
         
     }

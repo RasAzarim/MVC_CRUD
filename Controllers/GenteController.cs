@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using MVC_CRUD.Models;
 using MVC_CRUD.Models.ViewModels;
 
@@ -61,7 +62,7 @@ namespace MVC_CRUD.Controllers
         public ActionResult Editar(int Id)
         {
             GenteviewModel model = new GenteviewModel();
-            using (CRUDEntities4 db= new CRUDEntities4 ())
+            using (CRUDEntities4 db = new CRUDEntities4())
             {
                 var Gente = db.Gente.Find(Id);
                 model.Nombre = Gente.Nombre;
@@ -70,7 +71,7 @@ namespace MVC_CRUD.Controllers
                 model.Id = Gente.ID;
 
             }
-                return View(model);
+            return View(model);
         }
         [HttpPost]
         public ActionResult Editar(GenteviewModel model)
@@ -87,7 +88,7 @@ namespace MVC_CRUD.Controllers
                         Gente.FechaNacimeiento = model.Fecha_Nacimiento;
                         Gente.Nombre = model.Nombre;
 
-                        db.Entry(Gente).State= System.Data.Entity.EntityState.Modified;
+                        db.Entry(Gente).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();
                     }
 
@@ -102,18 +103,15 @@ namespace MVC_CRUD.Controllers
 
         }
         [HttpGet]
-        public ActionResult Elimnar(int Id)
+        public ActionResult eliminar( int Id)
         {
             using (CRUDEntities4 db = new CRUDEntities4())
             {
-                
-                var Gente = db.Gente.Find(Id);
-                db.Gente.Remove(Gente);
+                var otabla = db.Gente.Find(Id);
+                db.Gente.Remove(otabla);
                 db.SaveChanges();
-
             }
             return Redirect("/Gente");
         }
-
     }
 }
